@@ -8,7 +8,7 @@ import poolparty.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();  // 왜지?
+        MemberService memberService = new MemberServiceImpl(); 
         Member member = new Member(1L, "caitlyn", Grade.VIP);
         memberService.join(member);
 
