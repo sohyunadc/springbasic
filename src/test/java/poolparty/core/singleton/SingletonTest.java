@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import poolparty.core.AppConfig;
 import poolparty.core.member.MemberService;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SingletonTest {
 
     @Test
@@ -24,9 +26,33 @@ public class SingletonTest {
         System.out.println("memberService2 = " + memberService2);
 
         // memberService1 != memberService2
-        Assertions.assertThat(memberService1).isNotSameAs(memberService2);
+        assertThat(memberService1).isNotSameAs(memberService2);
 
     }
+
+//    public static void main(String[] args) {
+//        SingletonService singletonService = new SingletonService();
+//          싱글톤 private 이어서 컴파일 오류남
+//    }
+
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singletonService() {
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+
+        System.out.println("singletonService1 = " + singletonService1);
+        System.out.println("singletonService2 = " + singletonService2);
+        //드디어 같은 객체 인스턴스를 확인했다. 생성하고 가져다 쓴다.
+
+        assertThat(singletonService1).isSameAs(singletonService2);
+        assertThat(singletonService1).isEqualTo(singletonService2);
+
+        // isSameAs -> same ==
+        // isEqualTo -> equal equals
+    }
+
 
 }
 
